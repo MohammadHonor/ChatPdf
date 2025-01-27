@@ -1,13 +1,12 @@
-import React from 'react'
 import { PiCirclesFourThin } from "react-icons/pi";
 import { FaPlus } from "react-icons/fa6";
 export const Button = (prop) => {
-       //const data = false;
-       const data = true;
-       console.log(prop.prop)
+  //const data = false;
+  const data = true;
+  console.log(prop.prop);
   return (
     <button
-    className='
+      className="
     text-opacity-65
     text-white
     h-[3rem]
@@ -22,34 +21,37 @@ export const Button = (prop) => {
     items-center
     gap-[.5rem]
 
-    '>
-        {data  ?
+    "
+    >
+      {data ? (
         <FaPlus
-        
-        className='
+          className="
         relative
         top-[.2px]
         flex
         justify-center
         items-center
         text-[14px]
-        '
+        "
         />
-        : 
+      ) : (
         <PiCirclesFourThin
-        className='
+          className="
         animate-spin
         text-[14px]
         relative
         top-[.2px]
-        '
-        /> }
-        <span
-        className='
+        "
+        />
+      )}
+      <span
+        className="
         text-[14px]
         font-bold
-        '
-        >{data ? prop.prop : "Processing..." }</span>
+        "
+      >
+        {data ? prop.prop : "Processing..."}
+      </span>
     </button>
-  )
-}
+  );
+};

@@ -1,10 +1,9 @@
-import React from 'react'
-import { useDispatch,useSelector } from 'react-redux' ;
-import { increment,decrement } from './features/counter/counterSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../app/slice/counterSlice";
 export const Counter = () => {
-        const count = useSelector((state)=>state.counter.value)
-        console.log(count)
-        const dispatch = useDispatch();
+  const count = useSelector((state) => state.counter.value);
+  console.log(count);
+  const dispatch = useDispatch();
   return (
     <div>
       <div>
@@ -23,5 +22,5 @@ export const Counter = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
