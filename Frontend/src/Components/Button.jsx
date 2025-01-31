@@ -2,8 +2,8 @@ import { PiCirclesFourThin } from "react-icons/pi";
 import { FaPlus } from "react-icons/fa6";
 export const Button = (prop) => {
   //const data = false;
-  const data = true;
-  console.log(prop.prop);
+  const data = false;
+//   console.log(prop.prop);
   return (
     <button
       className="
