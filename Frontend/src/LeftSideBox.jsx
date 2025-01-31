@@ -5,17 +5,23 @@ import { Button } from "./Components/Button";
 import { StripBox } from "./Components/StripBox";
 import { SignInButton } from "./Components/SignInButton";
 import { History } from "./Components/History";
+import { useDispatch } from "react-redux";
+import { closeSideBar } from "../app/slice/hamburgerSlice";
+import { GiHamburgerMenu } from "react-icons/gi";
+
+
 export const LeftSideBox = () => {
+    const dispatch = useDispatch()
+    const displaySideBar=()=>{
+        dispatch(closeSideBar())
+    }
 const data = false;
 return (
     <div
-    className="bg-[#171717] text-opacity-70 w-[24rem] p-3 text-white flex flex-col gap-6 h-screen">
-    <div
-    className="
-    flex justify-between items-center text-white text-2xl opacity-70 pt-4"
-    >
-        <FaHamburger className="cursor-pointer" />
-        <FaEdit className="cursor-pointer" />
+    className="bg-[#171717] text-opacity-70 w-[30%]  p-3 text-white flex flex-col gap-6 h-screen ">
+    <div className="flex justify-between items-center h-[2.5rem] text-white text-2xl opacity-70 mt-4">
+        <GiHamburgerMenu  onClick={displaySideBar} className="cursor-pointer"/>
+        <FaEdit className="cursor-pointer"/>
     </div>
     <div className="flex justify-start items-center gap-2 text-sky-400 text-3xl">
         <MdPictureAsPdf />

@@ -1,26 +1,23 @@
 import axios from "axios";
 import { FaFilePdf } from "react-icons/fa6";
-import { useSelector } from "react-redux";
-// import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadPdfFile } from "../app/asyncthunk/uploadPdfFile";
+import { setDisplay } from "../app/slice/uploadBox";
+
 const GetPdfBox = () => {
-  const state = useSelector((state) => state.upload.display);
-  const getFile = (e) => {
+
+    const state = useSelector((state) => state.upload);
+    const dispatch = useDispatch()
+    const getFile = async(e) => {
     const file = e.target.files[0];
-    // console.log(e,file);
-    
     const formData = new FormData();
     formData.append("pdf", file);
-    axios
-    .post(`${import.meta.env.VITE_URI}/api/v1/content/`, formData)
-    .then((res) => {
-        console.log(res.data);
-    })
-    .catch((err) => {
-        console.log(err);
-})};
-
+    dispatch( uploadPdfFile(formData) )
+    dispatch(setDisplay("hidden"))
+    
+};
 return (
-    <div className={`${state} relative w-[60%] left-4`}>
+    <div className={`${state.display} absolute bottom-[3rem] left-[0.1rem] `}>
     <div
         className={` flex-col gap-2 z-50 rounded-2xl  justify-center items-center p-2 bg-[#2F2F2F] w-[14rem] `}
     >
@@ -36,6 +33,7 @@ return (
             type="file"
             id="input-file"
             onChange={getFile}
+
             />
         </label>
         </div>

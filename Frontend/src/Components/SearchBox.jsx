@@ -43,7 +43,7 @@ return (
     className="
         flex relative justify-between z-0
         items-center text-white bg-[#2F2F2F]
-        rounded-full p-2 gap-2 w-[110%] h-10 "
+        rounded-full p-2 gap-2 w-[100%] h-10 "
 >
     <CgAttachment
     onClick={() => showFileBox()}
@@ -65,6 +65,6 @@ return (
     ${query == null ? "opacity-25" : "opacity-100"}`}
     />
 </div>
-<GetPdfBox />
+{/* <GetPdfBox /> */}
 </>
 )};

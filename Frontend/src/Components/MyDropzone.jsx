@@ -2,26 +2,32 @@ import axios from 'axios';
 import {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { IoDocumentLockSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
+import { uploadPdfFile } from '../../app/asyncthunk/uploadPdfFile';
+
+// import uploadApi from '../../app/slice/uploadPdfSlice'
 function MyDropzone() {
+    
+    const response = useSelector((state)=>state)
     const [text,setText] = useState("drag & drop pdf file here, or click to select pdf file");
     const formData = new FormData();
-    const onDrop = useCallback(acceptedFiles => {
-    setText(`successfully ${acceptedFiles[0].name} uploaded`)
-    console.log(acceptedFiles)
-    formData.append("pdf",acceptedFiles[0])
-        axios
-            .post(`${import.meta.env.VITE_URI}/api/v1/content/`, formData)
-            .then((res) => {
-                console.log(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-        })
+    const dispatch = useDispatch()
+
+    const onDrop = useCallback( async(acceptedFiles) => {
+        try {
+        setText(`file uploading...`)
+        console.log(acceptedFiles)
+        formData.append("pdf",acceptedFiles[0])
+        const response = await dispatch( uploadPdfFile(formData))
+        // console.log(response)
+        setText(`${response.payload}`)
+        } catch (error) {
+            console.error(error)
+        }
     }, [])
+    // print(response)
+    
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
-    // console.log(getInputProps,getInputProps);
-    
-    
     
     return (
     <div className={`flex justify-center items-center rounded-2xl bg-white h-[28rem] 
