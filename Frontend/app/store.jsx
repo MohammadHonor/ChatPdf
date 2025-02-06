@@ -4,8 +4,9 @@ import counterReducer from "./slice/counterSlice.jsx";
 import uploadReducer from "./slice/uploadBox.jsx";
 // import ansReducer from "./slice/answereSlice.jsx";
 import isChatStartReducer from "./slice/isChatStartSlice.jsx";
-import hamburgerReducer from "./slice/hamburgerSlice.jsx"
-import uploadPdFileReducer from './slice/uploadPdfSlice.jsx'
+import hamburgerReducer from "./slice/hamburgerSlice.jsx";
+import uploadPdFileReducer from "./slice/uploadPdfSlice.jsx";
+import authReducer from "./slice/authSlice.jsx";
 
 export const store = configureStore({
   reducer: {
@@ -13,8 +14,9 @@ export const store = configureStore({
     chat: chatReducer,
     upload: uploadReducer,
     // answer: ansReducer,
-    chatStartAndStop:isChatStartReducer,
-    hamburger:hamburgerReducer,
-    uploadApi:uploadPdFileReducer
-
-}});
+    chatStartAndStop: isChatStartReducer,
+    hamburger: hamburgerReducer,
+    uploadApi: uploadPdFileReducer,
+    auth: authReducer,
+  },
+});

@@ -1,32 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uploadPdfFile } from "../asyncthunk/uploadPdfFile";
-
+// import { registerAuthThunk} from "../asyncthunk/registerAuth";
+import { loginAuthThunk } from "../asyncthunk/loginAuth";
 const initialState = {
   data: null,
   loading: false,
   error: null,
 };
 
-const uploadPdfSlice = createSlice({
-  name: "uploadPdf",
+const authSlice = createSlice({
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(uploadPdfFile.pending, (state) => {
+      .addCase(loginAuthThunk.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(uploadPdfFile.fulfilled, (state, action) => {
+      .addCase(loginAuthThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(uploadPdfFile.rejected, (state, action) => {
+      .addCase(loginAuthThunk.rejected, (state, action) => {
         state.loading = true;
-        console.log(action.payload);
         state.error = action.payload;
       });
   },
 });
 
-export default uploadPdfSlice.reducer;
+export default authSlice.reducer;
