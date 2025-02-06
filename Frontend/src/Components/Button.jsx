@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa6";
 export const Button = (prop) => {
   //const data = false;
   const data = false;
-//   console.log(prop.prop);
+  //   console.log(prop.prop);
   return (
     <button
       className="
