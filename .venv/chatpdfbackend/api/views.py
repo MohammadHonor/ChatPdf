@@ -3,72 +3,45 @@
 from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.http import FileResponse
+# from django.http import FileResponse
 from django.http import JsonResponse
 from rest_framework import status
-from api.models import pdfPath
-from api.serializers import pdfPathSerializer,BookSerializer
+# from api.models import pdfPath
+from api.serializers import pdfPathSerializer
 from api.models import pdfPath
 from api.extract_data import extractData
 import pickle
 from django.db import transaction
+import os
+from api.models import PdfDataModel
+from api.serializers import PdfDataSerializer
+from api.geminiConfiguration import querry_with_pdf
 class pdfPathView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             serializer = pdfPathSerializer(data = request.data)
+
             if(serializer.is_valid()) :
-                serializer.save()
-                return Response("file uploaded successfully",status=status.HTTP_200_OK)
-        except:
-            return Response("file not uploaded successfully")
 
-    # def get(self,request,id):
-    #     try:
-    #         all_pdf = pdfContent.objects.get(id=id)
-    #         file_path=all_pdf.pdf.path
-    #         # return FileResponse(open(file_path,'rb'),status=status.HTTP_200_OK)
-            
-    #         return Response("success",status=status.HTTP_200_OK)
-    #     except:
-    #         return Response(f"pdf not fount whose id {id}")
+                serializer_instance = serializer.save()
+                path = serializer_instance.pdf.url
+                text = extractData(path[1:])
+                data_serialize = PdfDataSerializer(data={'contents':text,'pdf':serializer_instance.id})
+                if data_serialize.is_valid():
+                    data_serialize.save()
+                return Response("file uploaded successfully",status = status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'message': str(e)}, status=status.HTTP_404_NOT_FOUND)
 
-# class querryView(APIView):
-#     def post(self,request,*args,**kwargs):
-#             serialize = userQuerrySerializer(data = request.data)
-#             if serialize.is_valid() :
-#                     data = serialize.data
-#                     pdf = pdfContent.objects.all()
-#                     pdfPath = pdfContentSerializer(pdf[len(pdf)-1]).data.get("pdf")
-#                     # print(pdfPath[1:])
-#                     # # print(text)
-#                     text = extractData(pdfPath[1:])
-#                     print(questionAnswereWithPdf(text,data['querry']))
-#                     return Response(serialize.data , status=status.HTTP_200_OK)
-#             Response("Not persent")
-
-class BookView(APIView):
-        def post(self,request,*args,**kwargs):
-            # with transaction.atomic():
-                print(request.data)
-                serializer = BookSerializer(data=request.data)
-                # print(serializer)
-                if serializer.is_valid() :
-                    # print(serializer.) 
-                    serializer.save()
-                    # print(data)
-                    return Response({"success":"successfully save data"}, status=status.HTTP_200_OK)
-                else :
-                    return Response({"error":"due to some reason"},status=status.HTTP_400_BAD_REQUEST)
-#         def get(self,request,pk):
-                
-#                 book = Book.objects.all()
-#                 serializer = BookSerializer(book,many=True)
-#                 return Response(serializer.data,status=status.HTTP_200_OK)
-#         def put(self,request,pk):
-#                 book = Book.objects.get()
-#                 serialize = BookSerializer(book,data=request.data)
-#                 if serialize.is_valid() :
-#                         serialize.save()
-#                         return Response({"success":"yes"},status=status.HTTP_200_OK)
-#                 else :
-#                         return Response(status=status.HTTP_400_BAD_REQUEST)
+class GenerativeView(APIView):
+    def post(self, request, *args,**kwargs):
+        try:
+            question = request.data['querry']
+            data = PdfDataModel.objects.all()
+            data_list = PdfDataSerializer(data, many=True)
+            text = data_list.data[len(data_list.data)-1]['contents']
+            ans = querry_with_pdf(text,question)
+            print(str(ans))
+            return Response({"message":str(ans)}, status=status.HTTP_200_OK)
+        except Exception as error:
+            return Response({"error":str(error)} , status=status.HTTP_404_NOT_FOUND)

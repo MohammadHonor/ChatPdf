@@ -1,22 +1,13 @@
 from rest_framework import serializers
-from api.models import pdfPath,Book
-
-# class pdfContentSerializer(serializers.HyperlinkedModelSerializer):
-#         class Meta:
-#                 model=pdfContent
-#                 fields ='__all__'
+from api.models import pdfPath
+from api.models import PdfDataModel
 
 class pdfPathSerializer(serializers.ModelSerializer):
         class Meta:
                 model=pdfPath
                 fields ='__all__'
 
-# class userQuerrySerializer(serializers.ModelSerializer):
-#         class Meta:
-#                 model=userQuerry
-#                 fields = '__all__'
-
-class BookSerializer(serializers.ModelSerializer):
-        class Meta:
-                model = Book
-                fields = ["title","author"]
+class PdfDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PdfDataModel
+        fields = '__all__'
