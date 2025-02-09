@@ -2,12 +2,13 @@ from django.db import models
 
 # Create your models here.
 class pdfPath(models.Model):
+        # id = models.IntegerField(primary_key=True,auto_created=True)
         pdf = models.FileField(upload_to='uploads/',null=True, blank=True)
         upload_at = models.DateTimeField(auto_now_add=True,null=True,blank=True)
 
-# class userQuerry(models.Model):
-#         querry = models.CharField(max_length=200)
 
-class Book(models.Model):
-        title = models.CharField(max_length=100,primary_key=True)
-        author = models.CharField(max_length=100)
+class PdfDataModel(models.Model):
+    pdf = models.ForeignKey(pdfPath,on_delete=models.CASCADE,related_name="pdf_content")
+    contents = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True ,null=True,blank=True)
+
