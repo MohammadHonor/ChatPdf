@@ -9,13 +9,9 @@ const uploadPdfFile = createAsyncThunk(
   async (pdfFile, thunkAPI) => {
     try {
       // console.log(API_ENDPOINTS.POSTS)
-      const response = await axiosInstance.post(
-        API_ENDPOINTS.POSTS(),
-        pdfFile,
-        {
-          headers: API_CONFIG.HEADERS,
-        },
-      );
+      const response = await axiosInstance.post(API_ENDPOINTS.POSTS, pdfFile, {
+        headers: API_CONFIG.HEADERS,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data);

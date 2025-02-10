@@ -1,26 +1,31 @@
 import { TypeAnimation } from "react-type-animation";
 import { useSelector } from "react-redux";
+import { PiCirclesFourThin } from "react-icons/pi";
 const ChatPanel = () => {
-  var text = "I am fine what about you ";
+  const textData = useSelector((state) => state.answer.textData);
 
-  const query = useSelector((state) => {
-    // console.log(state);
-    return state.chat.query;
-  });
   return (
-    <div
-      className="
-    overflow-auto bg-[#0D0D0D] snap-y scroll-
-    flex flex-col h-[28rem] w-[100%] top-10 p-4 pl-8 gap-4"
-    >
-      {query.map((v, index) => {
+    <div className="flex flex-col w-[100%] gap-2 p-2 bg-gray-800">
+      {textData.map((obj, index) => {
         return (
-          <div className="flex justify-between gap-2 flex-col " key={index}>
-            <span className="text-blue-400">Querry - {v}</span>
-            <article className="break-words text-green-400">
-              <TypeAnimation sequence={[`${text}`, 1000]} cursor={false} />
-            </article>
-          </div>
+          <>
+            <div className="flex w-[100%] justify-end">
+              <span className="rounded-full p-2 shadow-sm bg-zinc-700">
+                {obj.querry}
+              </span>
+            </div>
+            <div className="flex w-[100%] justify-start">
+              {!obj.answer ? (
+                <PiCirclesFourThin className=" animate-spin text-[14px] relative " />
+              ) : (
+                <TypeAnimation
+                  sequence={[`${obj.answer}`, 2000]}
+                  cursor={false}
+                  key={index}
+                />
+              )}
+            </div>
+          </>
         );
       })}
     </div>

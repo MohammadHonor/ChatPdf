@@ -5,7 +5,7 @@ import { Register } from "../Components/Register.jsx";
 import Login from "../Components/login.jsx";
 export const AppRoutes = () => {
   return (
-    <div className=" bg-[#212121] h-screen border-blue-700 flex justify-center items-center">
+    <div className=" bg-[#212121] h-screen gap-2 border-blue-700 flex justify-center items-center">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/dashboard" element={<Dashboard />} />
