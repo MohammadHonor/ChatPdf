@@ -3,6 +3,7 @@ const API_ENDPOINTS = {
   REGISTER_POST: "/user/v1/register/",
   LOGIN_POST: "user/v1/login/",
   REFRESH_TOKEN_POST: "user/v1/refresh/",
+  TEXT_GENERATE: "/api/v1/generate/",
 };
 
 export default API_ENDPOINTS;
