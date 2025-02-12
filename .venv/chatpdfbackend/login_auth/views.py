@@ -64,22 +64,56 @@ class LoginView(APIView):
                     value=refresh_token,
                     httponly=True,
                     max_age=api_settings.REFRESH_TOKEN_LIFETIME,
-                    samesite='None',
-                    secure=False
+                    samesite='Lax',
+                    secure=False,
+                    path='/'
                 )
                 response.set_cookie(
                     key='access_token',
                     value=access_token,
                     httponly=True,
-                    samesite='None',
+                    samesite='Lax',
                     max_age=api_settings.ACCESS_TOKEN_LIFETIME,
-                    secure=False
+                    secure=False,
+                    path='/'
                 )
                 return response
             return Response({'message':"password is incorrect"},status=status.HTTP_400_BAD_REQUEST)
         except Exception as e :
             # print(e)
             return Response({'message': str(e) },status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    # logout
+    def get(self,request):
+        
+        try:
+            response = Response({"message":"logout successfully"})
+            response.set_cookie(
+                key="refresh_token",
+                value="",
+                max_age=0,
+                secure=True,
+                httponly=True,
+                samesite='Lax',
+                path='/'
+            )
+            response.set_cookie(
+                key="access_token",
+                value="",
+                max_age=0,
+                secure=True,
+                httponly=True,
+                samesite='Lax',
+                path='/'
+            )
+
+            token = request.COOKIES.get('refresh_token')
+            if token :
+                RefreshTokenModel.objects.filter(Token=token).delete()
+            return response
+        except Exception as e:
+            return Response({'error':str(e)}, status=status.HTTP_417_EXPECTATION_FAILED)
+
+
 
 class RefreshTokenView(APIView):
     def post(self,request,*args,**kwargs):
@@ -92,16 +126,26 @@ class RefreshTokenView(APIView):
         user = RegisterModel.objects.filter(id=user_id).first()
         Refresh_Instance = RefreshTokenModel.create_refresh_token(user)
         token = RefreshToken(Refresh_Instance.Token)
-        access_token = token.access_token
+        access_token = str(token.access_token)
 
         response = Response({"is_refreshed_access_token":True},status=status.HTTP_200_OK)
         response.set_cookie(
             key='access_token',
             value=access_token,
-            secure=True,
-            samesite='lax',
+            secure=False,
+            samesite='Lax',
             httponly=True,
-            max_age=api_settings.ACCESS_TOKEN_LIFETIME
+            max_age=api_settings.ACCESS_TOKEN_LIFETIME,
+            path='/'
+        )
+        response.set_cookie(
+            key='refresh_token',
+            value=str(token),
+            secure=False,
+            samesite='Lax',
+            httponly=True,
+            max_age=api_settings.REFRESH_TOKEN_LIFETIME,
+            path='/'
         )
         return response
         
