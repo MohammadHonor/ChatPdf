@@ -4,6 +4,7 @@ const API_ENDPOINTS = {
   LOGIN_POST: "user/v1/login/",
   REFRESH_TOKEN_POST: "user/v1/refresh/",
   TEXT_GENERATE: "/api/v1/generate/",
+  LOGOUT: "/user/v1/logout/",
 };
 
 export default API_ENDPOINTS;
