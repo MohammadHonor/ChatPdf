@@ -8,7 +8,7 @@ export const WelcomeBox = () => {
     return state.chatStartAndStop.isChatStart;
   });
   return (
-    <div className="flex gap-[1rem] flex-col items-center w-[50%] relative">
+    <div className="flex gap-[1rem] flex-col items-center w-[60%] relative">
       <TypeAnimation
         sequence={["Welcome to ChatPdf", 1000]}
         speed={50}

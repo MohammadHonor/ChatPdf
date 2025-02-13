@@ -1,5 +1,6 @@
 import { Loader } from "./Components/loader";
 import { useEffect, useState } from "react";
+// import Dictaphone from "./Dictaphone";
 import Login from "./Components/login";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className=" bg-[#212121] h-screen border-blue-700 flex justify-center items-center">
       {showLoader ? <Loader /> : <Login />}
+      {/* <Dictaphone/> */}
     </div>
   );
 }
