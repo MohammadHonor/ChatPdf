@@ -20,6 +20,7 @@ const ChatPanel = () => {
               ) : (
                 <TypeAnimation
                   sequence={[`${obj.answer}`, 2000]}
+                  speed={100}
                   cursor={false}
                   key={index}
                 />

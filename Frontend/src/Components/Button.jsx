@@ -3,7 +3,6 @@ import { FaPlus } from "react-icons/fa6";
 export const Button = (prop) => {
   //const data = false;
   const data = false;
-  //   console.log(prop.prop);
   return (
     <button
       className="text-opacity-65 text-white h-[3rem] border-[.2px] border-slate-400 w-[100%] rounded
