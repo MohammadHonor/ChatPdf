@@ -14,7 +14,7 @@ const GetPdfBox = () => {
     dispatch(setDisplay("hidden"));
   };
   return (
-    <div className={`${state.display} absolute bottom-[3rem] left-[0.1rem] `}>
+    <div className={`${state.display} absolute bottom-[3rem] left-[24rem] `}>
       <div
         className={` flex-col gap-2 z-50 rounded-2xl  justify-center items-center p-2 bg-[#2F2F2F] w-[14rem] `}
       >

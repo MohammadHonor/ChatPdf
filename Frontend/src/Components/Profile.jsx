@@ -14,7 +14,7 @@ function Profile(props) {
 
   return (
     <div
-      className={` ${props.isVisible ? "flex" : "hidden"} absolute flex-col w-[10rem] p-2 justify-start gap-1 text-white text-sm bg-[#3A3A46] rounded right-[2px] top-12`}
+      className={` ${props.isVisible ? "flex" : "hidden"} absolute flex-col w-[10rem] p-2 justify-start gap-1 text-white text-sm bg-[#48486b] rounded right-[2px] top-12`}
     >
       <div className="rounded hover:bg-[#555562] pl-1">
         {userInformation.data}

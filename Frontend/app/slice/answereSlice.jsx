@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
   answer: "",
   querry: "",
-  textData: [{ querry: "", answer: "" }],
+  textData: [{ querry: "?", answer: "How can I help you" }],
   error: null,
 };
 
@@ -19,6 +19,9 @@ const answerSlice = createSlice({
     addQuery: (state, action) => {
       state.querry = action.payload;
     },
+    clearTextData:(state)=>{
+        state.textData=[[{ querry: "?", answer: "How can I help you" }]]
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -36,5 +39,5 @@ const answerSlice = createSlice({
       });
   },
 });
-export const { addQuery, display } = answerSlice.actions;
+export const { addQuery, display ,clearTextData } = answerSlice.actions;
 export default answerSlice.reducer;
