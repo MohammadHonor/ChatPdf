@@ -33,14 +33,14 @@ export const RightSideBox = () => {
           <span>chatPdf</span>
         </div>
         <div
-          className="flex justify-center cursor-pointer border-[1px] rounded-full bg-white text-black h-10 w-10 text-xl items-center relative"
+          className="flex justify-center cursor-pointer border-[1px] rounded-full hover:bg-blue-400 bg-white text-black h-10 w-10 text-xl items-center relative"
           onClick={() => {
             if (profile) {
               setProfile(false);
             } else setProfile(true);
           }}
         >
-          <span>{displayName}</span>
+          <span className="">{displayName}</span>
           <Profile isVisible={profile} />
         </div>
       </div>
