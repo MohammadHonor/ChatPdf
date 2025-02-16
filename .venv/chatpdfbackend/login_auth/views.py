@@ -86,7 +86,7 @@ class LoginView(APIView):
     def get(self,request):
         
         try:
-            response = Response({"message":"logout successfully"},status=status.HTTP_403_FORBIDDEN)
+            response = Response({"message":"logout successfully"})
             response.set_cookie(
                 key="refresh_token",
                 value="",
