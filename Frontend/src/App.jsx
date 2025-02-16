@@ -1,7 +1,7 @@
-import { Loader } from "./Components/loader";
+import { Loader } from './Components/Loader.jsx'
 import { useEffect, useState } from "react";
 // import Dictaphone from "./Dictaphone";
-import Login from "./Components/login";
+import Login from "./Components/Login";
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);

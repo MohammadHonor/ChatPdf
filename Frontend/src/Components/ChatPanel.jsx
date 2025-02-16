@@ -5,12 +5,12 @@ const ChatPanel = () => {
   const textData = useSelector((state) => state.answer.textData);
 
   return (
-    <div className="flex flex-col w-[100%] gap-2 p-2 bg-gray-800">
+    <div className="flex flex-col w-[100%] gap-2 p-2  text-sm">
       {textData.map((obj, index) => {
         return (
           <>
             <div className="flex w-[100%] justify-end">
-              <span className="rounded-full p-2 shadow-sm bg-zinc-700">
+              <span className="rounded-full p-2 shadow-sm bg-zinc-700" key={index}>
                 {obj.querry}
               </span>
             </div>
@@ -20,7 +20,7 @@ const ChatPanel = () => {
               ) : (
                 <TypeAnimation
                   sequence={[`${obj.answer}`, 2000]}
-                  speed={100}
+                  speed={75}
                   cursor={false}
                   key={index}
                 />
