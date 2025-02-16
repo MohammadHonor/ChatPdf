@@ -1,19 +1,14 @@
 from datetime import timedelta
 from pathlib import Path
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')  # Now getting it from environment variables
-
-if not SECRET_KEY:
-  print("not configured")
+SECRET_KEY = 'django-insecure-d=)i4=7f*sqoo*(#-9ds#x8@w=6$iv-2oiwwt-2tg5(#cwh1r#'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]  # You should change this to include specific domain(s) for production
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -26,7 +21,7 @@ INSTALLED_APPS = [
     'api',
     'corsheaders',
     'login_auth',
-]
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -40,17 +35,17 @@ MIDDLEWARE = [
 ]
 
 simple_jwt = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLISTS_AFTER_ROTATIONS': True
+    'ACCESS_TOKEN_LIFETIME':timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME':timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS':True,
+    'BLACKLISTS_AFTER_ROTATIONS':True
 }
 
-DEFAULT_PERMISSION_CLASSES = ['rest_framework.permissions.AllowAny']  # Corrected syntax
+DEFAULT_PERMISSION_CLASSES: [ 'rest_framework.permissions.AllowAny' ]
 CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'chatpdfbackend.urls'
 CORS_ALLOWED_ORIGINS = [
-    "https://frontend-chatpdf.onrender.com"  # Frontend URL for CORS
+    "http://localhost:5173",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -93,18 +88,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 LANGUAGE_CODE = 'en-us'
+
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
 USE_TZ = True
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Static files collection for production
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-APPEND_SLASH = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
+APPEND_SLASH = False
