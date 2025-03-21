@@ -10,7 +10,10 @@ const ChatPanel = () => {
         return (
           <>
             <div className="flex w-[100%] justify-end">
-              <span className="rounded-full p-2 shadow-sm bg-zinc-700" key={index}>
+              <span
+                className="rounded-full p-2 shadow-sm bg-zinc-700"
+                key={index}
+              >
                 {obj.querry}
               </span>
             </div>

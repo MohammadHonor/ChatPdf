@@ -12,15 +12,17 @@ import { startChatting } from "../app/slice/isChatStartSlice";
 export const LeftSideBox = () => {
   const dispatch = useDispatch();
   const displaySideBar = () => dispatch(closeSideBar());
-  const data = useSelector((state)=>state.auth.data)
-//   console.log("skskksks")
+  const data = useSelector((state) => state.auth.data);
+  //   console.log("skskksks")
 
   return (
     <div className="bg-[#1d1c1c] text-opacity-70 w-[25%]  p-3 text-white flex flex-col gap-2 h-screen pt-0 pb-0">
       <div className="flex justify-between items-center h-[10%] text-white text-2xl opacity-80">
         <GiHamburgerMenu onClick={displaySideBar} className="cursor-pointer" />
-        <FaEdit className="cursor-pointer"
-        onClick={()=>dispatch(startChatting())} />
+        <FaEdit
+          className="cursor-pointer"
+          onClick={() => dispatch(startChatting())}
+        />
       </div>
       <div className="flex justify-start items-center gap-2 text-sky-400 text-2xl">
         <MdPictureAsPdf />

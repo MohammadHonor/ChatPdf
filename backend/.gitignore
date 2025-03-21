@@ -1,0 +1,95 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django specific files
+db.sqlite3
+db.sqlite3-journal
+*.log
+.env
+*.env
+.env.local
+config/settings/local.py
+config/settings/.env
+/secrets/
+
+# MySQL data (if using local storage)
+*.sql
+*.mysql
+
+# Ignore migrations cache
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# VS Code settings
+.vscode/
+
+# Virtual environment
+venv/
+.env/
+env/
+
+# Cache and logs
+*.log
+*.out
+*.pid
+*.swp
+*.swo
+*.swn
+*.swn
+
+# Python packages
+*.egg-info/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Compiled files
+*.so
+*.o
+*.pyd
+
+# Django static and media files
+staticfiles/
+media/
+static/
+node_modules/
+
+# pnpm-specific files
+pnpm-lock.yaml
+.pnpm-store/
+.pnpm-debug.log
+
+# Docker files (if using Docker)
+docker-compose.override.yml
+.dockerignore
+logs/
+volumes/
+__pycache__
+
+# Celery, Redis, and Cache
+celerybeat-schedule
+*.sage
+
+# Idea (JetBrains)
+.idea/
+
+# Coverage reports
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.pytest_cache/
+
+# Ignore pytest and test-related files
+.pytest_cache/
+test-results.xml
+junit/
+
+# Ignore database migrations
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# Ignore temp files
+*.tmp
+*.temp
