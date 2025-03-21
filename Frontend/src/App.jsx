@@ -1,4 +1,4 @@
-import { Loader } from './Components/Loader.jsx'
+import { Loader } from "./Components/Loader.jsx";
 import { useEffect, useState } from "react";
 // import Dictaphone from "./Dictaphone";
 import Login from "./Components/Login";

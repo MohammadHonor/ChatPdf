@@ -43,7 +43,7 @@ simple_jwt = {
 
 DEFAULT_PERMISSION_CLASSES: [ 'rest_framework.permissions.AllowAny' ]
 CORS_ORIGIN_ALLOW_ALL = True
-ROOT_URLCONF = 'chatpdfbackend.urls'
+ROOT_URLCONF = 'backend.urls'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
@@ -64,7 +64,7 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = 'chatpdfbackend.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {

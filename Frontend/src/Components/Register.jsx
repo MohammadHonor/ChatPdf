@@ -37,36 +37,48 @@ export const Register = () => {
   };
 
   const signUpButtonHandler = async () => {
+    if (inputData.password != inputData.conf_password)
+      alert("password not match");
 
-    if (inputData.password != inputData.conf_password) alert("password not match");
-
-    if(fp){
-
-        try {
-            const response = await axios.put(`${API_CONFIG.BASE_URL}${API_ENDPOINTS.FORGET_PASSWORD}`,
-                { email: inputData.email, password: inputData.password});
-                console.log(response);
-            if (response.status == 201) {
-                toast.success(response.data.message);
-            }
-        } catch (error) {
+    if (fp) {
+      try {
+        const response = await axios.put(
+          `${API_CONFIG.BASE_URL}${API_ENDPOINTS.FORGET_PASSWORD}`,
+          { email: inputData.email, password: inputData.password },
+        );
+        console.log(response);
+        if (response.status == 201) {
+          toast.success(response.data.message);
+        }
+      } catch (error) {
         console.log(error);
         toast.error("password not changed");
-        }
-        setInputData({ email: "", password: "", conf_password: "" });
-    }else{
-
-        if (!inputData.check)alert("please check the box");
-        try {
-            const response = await axios.post(`${API_CONFIG.BASE_URL}${API_ENDPOINTS.REGISTER_POST}`,
-            { name: inputData.name, email: inputData.email, password: inputData.password});
-            console.log(response);
-        if (response.status == 201) toast.success(response.data.message)
-    } catch (error) {
-      console.log(error);
-      toast.error("you are already register");
-    }
-    setInputData({ name: "", email: "", password: "", conf_password: "", check: false});
+      }
+      setInputData({ email: "", password: "", conf_password: "" });
+    } else {
+      if (!inputData.check) alert("please check the box");
+      try {
+        const response = await axios.post(
+          `${API_CONFIG.BASE_URL}${API_ENDPOINTS.REGISTER_POST}`,
+          {
+            name: inputData.name,
+            email: inputData.email,
+            password: inputData.password,
+          },
+        );
+        console.log(response);
+        if (response.status == 201) toast.success(response.data.message);
+      } catch (error) {
+        console.log(error);
+        toast.error("you are already register");
+      }
+      setInputData({
+        name: "",
+        email: "",
+        password: "",
+        conf_password: "",
+        check: false,
+      });
     }
   };
   return (

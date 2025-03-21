@@ -1,26 +1,36 @@
-# Logs
-logs
-*.log
+# Node.js dependencies
+node_modules/
+.pnpm-store/
+
+# Lockfiles from other package managers
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+.out/
+.vite/
+
+# ESLint cache
+.eslintcache
+
+# Prettier cache
+.prettier/
+
+# Local environment variables (secrets)
+.env
+.env.local
+.env.*.local
+
+# Debug logs
 npm-debug.log*
+pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# IDE-specific files
+.vscode/
+.idea/
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-.env
-

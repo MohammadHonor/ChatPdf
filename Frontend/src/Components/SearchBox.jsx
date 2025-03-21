@@ -13,7 +13,9 @@ export const SearchBox = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.upload.display);
   const inputValue = (e) => setQuery(e.target.value);
-  const isChatStart = useSelector((state) => state.chatStartAndStop.isChatStart);
+  const isChatStart = useSelector(
+    (state) => state.chatStartAndStop.isChatStart,
+  );
   const getQuery = async () => {
     try {
       reference.current.value = "";

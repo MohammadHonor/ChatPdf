@@ -15,7 +15,7 @@ const persistConfig = {
   key: "root",
   storage,
   // blacklist:['counter','chat','upload','answer','chatStartAndStop','hamburger','uploadApi']
-  whitelist: ["auth",'answer'],
+  whitelist: ["auth", "answer"],
 };
 
 const rootReducer = combineReducers({
