@@ -21,5 +21,6 @@ from django.urls import path , include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/',include('api.urls')),
-    path('user/v1/' , include('login_auth.urls'))
+    path('user/v1/' , include('login_auth.urls')),
+    path('speech_api/v1/',include("speech_api.urls"))
 ]
