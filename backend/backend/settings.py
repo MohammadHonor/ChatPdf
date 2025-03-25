@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'api',
     'corsheaders',
     'login_auth',
+    'speech_api'
     ]
 
 MIDDLEWARE = [
