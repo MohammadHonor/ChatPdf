@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addQuery, display } from "../../app/slice/answereSlice";
 import { setDisplay } from "../../app/slice/uploadBox";
 import { fetchAnswerByQuestion } from "../../app/asyncthunk/fetchAnswere";
-import Dictaphone from "../Dictaphone";
+// import Dictaphone from "../Dictaphone";
 
 fetchAnswerByQuestion;
 export const SearchBox = () => {
@@ -40,7 +40,7 @@ export const SearchBox = () => {
       <div
         className={` ${isChatStart ? "flex" : "hidden"} relative justify-between z-0 items-center text-white bg-[#2F2F2F] rounded-full p-2 gap-2 w-[50%] h-10 `}
       >
-        <Dictaphone />
+        {/* <Dictaphone /> */}
         <CgAttachment
           onClick={() => showFileBox()}
           className="text-2xl cursor-pointer"

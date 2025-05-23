@@ -64,13 +64,19 @@ export const Register = () => {
             name: inputData.name,
             email: inputData.email,
             password: inputData.password,
+            confirm_password:inputData.conf_password
           },
         );
         console.log(response);
         if (response.status == 201) toast.success(response.data.message);
       } catch (error) {
-        console.log(error);
-        toast.error("you are already register");
+        if (error.response?.data) {
+          const errors = error.response.data;
+          const messages = Object.values(errors).flat().join("\n");
+          toast.error(messages);
+        } else {
+          toast.error("An unexpected error occurred");
+        }
       }
       setInputData({
         name: "",
