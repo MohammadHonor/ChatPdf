@@ -13,18 +13,13 @@ from rest_framework_simplejwt.settings import api_settings
 # Create your views here.
 
 class RegisterView(APIView):
-    #register
-    def post(self,request,*args,**kwargs):
-        request.data['password'] = make_password(request.data['password'])
-
-        try:
-            serialize = RegisterSerializer(data=request.data)
-            if serialize.is_valid() :
-                serialize.save()
-                return Response({'message':"registration successful"},status=status.HTTP_201_CREATED)
-            return Response({'message':"registration unsuccessful"},status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            return Response({'message':"registration unsuccessful"},status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': "Registration successful"}, status=status.HTTP_201_CREATED)
+        # Return all validation errors back to frontend
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     # forget
     def put(self,request):
         try:
